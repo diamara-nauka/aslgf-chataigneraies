@@ -1,0 +1,140 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { partners } from '../data/partners';
+---
+
+<Layout title="Nos Partenaires">
+  <section class="partners-hero">
+    <div class="containerWide">
+      <span class="subtitle">Réseau & Collaboration</span>
+      <h1>Les Partenaires de l'ASLGF</h1>
+      <p>
+        Nous travaillons main dans la main avec des acteurs publics et privés
+        pour la valorisation du Pays Saint-Ponais.
+      </p>
+    </div>
+  </section>
+
+  <section class="partners-list">
+    <div class="container">
+      <div class="partners-grid-full">
+        {
+          partners.map((partner) => (
+            <div class="partner-details">
+              <div class="partner-meta">
+                <div class="logo-box">{partner.name}</div>
+                {partner.website && (
+                  <a
+                    href={partner.website}
+                    target="_blank"
+                    class="partner-link"
+                  >
+                    Visiter le site →
+                  </a>
+                )}
+              </div>
+              <div class="partner-info">
+                <h2>{partner.name}</h2>
+                <p>{partner.description}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .partners-hero {
+    padding: 12rem 0 6rem;
+    background: var(--primary);
+    color: white;
+    text-align: center;
+  }
+
+  .containerWide {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .partners-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .partners-hero p {
+    font-size: 1.25rem;
+    opacity: 0.8;
+  }
+
+  .subtitle {
+    display: block;
+    color: var(--accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+  }
+
+  .partners-list {
+    padding: 8rem 0;
+  }
+
+  .partners-grid-full {
+    display: grid;
+    gap: 4rem;
+  }
+
+  .partner-details {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 4rem;
+    align-items: start;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid #edf2f7;
+  }
+
+  @media (max-width: 768px) {
+    .partner-details {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  .logo-box {
+    height: 150px;
+    background: white;
+    border: 1px solid #edf2f7;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary);
+    opacity: 0.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .partner-link {
+    display: inline-block;
+    color: var(--accent);
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  .partner-info h2 {
+    font-size: 2.2rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+  }
+
+  .partner-info p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #4a5568;
+  }
+</style>

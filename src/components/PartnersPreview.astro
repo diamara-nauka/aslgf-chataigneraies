@@ -1,0 +1,211 @@
+---
+import { partners } from '../data/partners';
+import { Image } from 'astro:assets';
+import logoAlcina from '../assets/img/logo_alcina.png';
+---
+
+<section class="partners-preview">
+  <div class="container">
+    <div class="section-header">
+      <span class="subtitle">Ils nous font confiance</span>
+      <h2>Nos Partenaires</h2>
+      <p>
+        L'ASLGF collabore avec des organismes européens et des experts locaux
+        pour garantir une gestion forestière exemplaire.
+      </p>
+    </div>
+
+    <div class="partners-grid">
+      {
+        partners.map((partner) => (
+          <div class="partner-card reveal">
+            <div class="partner-logo-box">
+              {partner.id === 'alcina' ? (
+                <Image src={logoAlcina} alt="Logo Alcina" class="partner-logo-img" format="png" quality={80} />
+              ) : (
+                <>
+                  <span class="placeholder-icon">{partner.name[0]}</span>
+                  <span class="placeholder-text">Logo {partner.name}</span>
+                </>
+              )}
+            </div>
+            <h3>{partner.name}</h3>
+            <p>{partner.description.split('.')[0]}.</p>
+            <a href="/partenaires" class="learn-more">
+              En savoir plus <span>→</span>
+            </a>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="partners-action reveal">
+      <a href="/partenaires" class="btn btn-outline"
+        >Voir tous les partenaires</a
+      >
+    </div>
+  </div>
+</section>
+
+<style>
+  .partners-preview {
+    padding: 12rem 0;
+    background: #f8faf9;
+    position: relative;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 6rem;
+  }
+
+  .subtitle {
+    display: block;
+    color: var(--accent);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    margin-bottom: 1.5rem;
+    font-size: 0.8rem;
+  }
+
+  h2 {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    color: var(--primary);
+    margin-bottom: 2rem;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 4rem;
+    margin-bottom: 6rem;
+  }
+
+  @media (max-width: 968px) {
+    .partners-preview {
+      padding: 6rem 0;
+    }
+    .partners-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    .partner-card {
+      padding: 3rem 2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .partners-grid {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+  }
+
+  .partner-card {
+    background: white;
+    padding: 4rem 3rem;
+    border-radius: 2.5rem;
+    text-align: center;
+    transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+    border: 1px solid #f0f4f2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .partner-card:hover {
+    transform: translateY(-15px);
+    border-color: var(--accent);
+    box-shadow: 0 40px 80px -20px rgba(15, 42, 32, 0.1);
+  }
+
+  .partner-logo-box {
+    width: 120px;
+    height: 120px;
+    background: #f0f7f2;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+    color: var(--primary);
+    transition: var(--transition);
+  }
+
+  .partner-card:hover .partner-logo-box {
+    background: var(--primary);
+    color: var(--accent);
+  }
+
+  .partner-logo-img {
+    width: 70%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .placeholder-icon {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .placeholder-text {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.5;
+    margin-top: 0.5rem;
+  }
+
+  .partner-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+    font-family: 'Playfair Display', serif;
+  }
+
+  .partner-card p {
+    font-size: 1rem;
+    color: #667085;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+  }
+
+  .learn-more {
+    font-weight: 700;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .learn-more span {
+    transition: transform 0.3s ease;
+  }
+
+  .learn-more:hover span {
+    transform: translateX(5px);
+  }
+
+  .partners-action {
+    text-align: center;
+  }
+
+  .btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+  }
+
+  .btn-outline:hover {
+    background: var(--primary);
+    color: white;
+  }
+</style>

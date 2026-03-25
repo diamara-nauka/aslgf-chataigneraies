@@ -1,0 +1,217 @@
+---
+import { Image } from 'astro:assets';
+import logoAslgf from '../assets/img/logo_aslgf.png';
+
+const { pathname } = Astro.url;
+const normalizedPath = pathname.replace(/\/$/, '') || '/';
+const hasDarkHero = normalizedPath === '/' || normalizedPath === '/partenaires';
+---
+
+<header
+  class={!hasDarkHero ? 'scrolled' : ''}
+  data-has-dark-hero={hasDarkHero ? 'true' : 'false'}
+>
+  <nav>
+    <div class="logo">
+      <a href="/">
+        <Image src={logoAslgf} alt="ASLGF Logo" class="header-logo" format="png" quality={80} />
+        <span class="logo-text">ASLGF <span>Châtaigneraies</span></span>
+      </a>
+    </div>
+    <div class="nav-links">
+      <a href="/#mission">Mission</a>
+      <a href="/partenaires">Partenaires</a>
+      <button id="drawer-toggle" aria-label="Menu">
+        <span class="blog-text">Blog</span>
+        <span class="burger-icon"></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<style>
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 2rem 0;
+    transition: all 0.4s ease;
+  }
+
+  header.scrolled {
+    padding: 1rem 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  header.scrolled .logo,
+  header.scrolled .nav-links a {
+    color: var(--primary);
+  }
+
+  nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: white;
+    text-decoration: none;
+  }
+
+  .logo a {
+    color: inherit;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .header-logo {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+
+  .logo span {
+    color: var(--accent);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  @media (max-width: 968px) {
+    .nav-links a:not(#drawer-toggle) {
+      display: none;
+    }
+    .nav-links {
+      gap: 1rem;
+    }
+  }
+
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--accent);
+  }
+
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+
+  #drawer-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 1.2rem;
+    border-radius: 2rem;
+    background: var(--accent);
+    color: var(--primary);
+    transition: all 0.3s ease;
+  }
+
+  @media (max-width: 480px) {
+    .logo {
+      font-size: 1.4rem;
+    }
+    #drawer-toggle {
+      padding: 0.5rem 0.8rem;
+    }
+    .blog-text {
+      display: none;
+    }
+  }
+
+  header.scrolled #drawer-toggle {
+    background: var(--primary);
+    color: white;
+  }
+
+  #drawer-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(130, 172, 74, 0.3);
+  }
+
+  .blog-text {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+  }
+
+  .burger-icon {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--primary);
+    position: relative;
+  }
+
+  header.scrolled .burger-icon {
+    background: white;
+  }
+
+  .burger-icon::before,
+  .burger-icon::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    left: 0;
+  }
+
+  .burger-icon::before {
+    top: -6px;
+  }
+  .burger-icon::after {
+    top: 6px;
+  }
+</style>
+
+<script>
+  const header = document.querySelector('header');
+  const hasDarkHero = header?.dataset.hasDarkHero === 'true';
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50 || !hasDarkHero) {
+      header?.classList.add('scrolled');
+    } else {
+      header?.classList.remove('scrolled');
+    }
+  });
+</script>

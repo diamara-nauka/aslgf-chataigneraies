@@ -1,0 +1,201 @@
+---
+import { Image } from 'astro:assets';
+import heroVideo from '../assets/video/VID_20260309_111657.mp4';
+---
+
+<section class="hero">
+  <div class="hero-bg-container">
+    <video src={heroVideo} autoplay loop muted playsinline class="hero-bg"></video>
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-badge reveal">Créée en 2023</div>
+    <h1 class="reveal">
+      Association Syndicale Libre de Gestion Forestière <span
+        >des châtaigneraies du Pays Saint-Ponais</span
+      >
+    </h1>
+    <p class="reveal">
+      Gestion durable et valorisation des forêts du territoire. Une initiative
+      collective pour un massif résilient face au changement climatique.
+    </p>
+  </div>
+
+  <div class="scroll-hint reveal">
+    <span>DÉCOUVRIR</span>
+    <div class="line"></div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+  }
+
+  .hero-bg-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  .hero-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.05); /* Prepped for subtle parallax */
+  }
+
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      rgba(15, 42, 32, 0.6) 0%,
+      rgba(15, 42, 32, 0.8) 70%,
+      var(--primary) 100%
+    );
+  }
+
+  .hero-content {
+    max-width: 1100px;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    background: rgba(130, 172, 74, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(130, 172, 74, 0.3);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 2.5rem;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 800;
+    margin-bottom: 2.5rem;
+    line-height: 1.1;
+    font-family: 'Playfair Display', serif;
+    max-width: 950px;
+    margin-inline: auto;
+  }
+
+  h1 span {
+    display: block;
+    color: var(--accent);
+    font-size: 0.7em;
+    font-weight: 400;
+    font-family: 'Outfit', sans-serif;
+    margin-top: 0.5rem;
+    opacity: 0.9;
+  }
+
+  p {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    margin-bottom: 4rem;
+    opacity: 0.8;
+    max-width: 750px;
+    margin-inline: auto;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    opacity: 0.6;
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    font-weight: 700;
+  }
+
+  .scroll-hint .line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    animation: scrollLine 2s infinite ease-in-out;
+  }
+
+  @keyframes scrollLine {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    50% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+    h1 span {
+      font-size: 0.8em;
+    }
+    p {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+    .hero-actions {
+      flex-direction: column;
+      width: 100%;
+      max-width: 300px;
+      margin-inline: auto;
+      gap: 1rem;
+    }
+    .btn {
+      width: 100%;
+      margin: 0 !important;
+    }
+    .scroll-hint {
+      display: none !important;
+    }
+    .hero {
+      min-height: 600px;
+      padding-top: 80px;
+    }
+  }
+</style>

@@ -1,0 +1,54 @@
+---
+
+---
+
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-logo">ASLGF <span>Châtaigneraies</span></div>
+      <p>
+        &copy; {new Date().getFullYear()} ASLGF des châtaigneraies du Pays Saint-Ponais.
+        Tous droits réservés.
+      </p>
+      <div class="footer-social">
+        <a href="mailto:Adresse.email@gmail.com" class="social-link">Email</a>
+        <a href="#" class="social-link">Facebook</a>
+        <a href="#" class="social-link">Youtube</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer {
+    background: #0a1b14;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 4rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .footer-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: white;
+  }
+
+  .footer-logo span {
+    color: var(--accent);
+  }
+
+  @media (max-width: 768px) {
+    .footer-content {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

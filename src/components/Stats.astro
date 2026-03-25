@@ -1,0 +1,99 @@
+---
+const stats = [
+  { number: '31', label: 'Propriétaires adhérents' },
+  { number: '310', label: 'Hectares en gestion' },
+  { number: '2023', label: 'Année de création' }
+];
+---
+
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      {
+        stats.map((stat) => (
+          <div class="stat-card reveal">
+            <div class="stat-icon">
+              {stat.label.includes('Adhérents') && '👥'}
+              {stat.label.includes('gestion') && '🌳'}
+              {stat.label.includes('création') && '📅'}
+            </div>
+            <div class="stat-number">{stat.number}</div>
+            <div class="stat-label">{stat.label}</div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .stats {
+    padding: 6rem 0;
+    margin-top: -6rem;
+    position: relative;
+    z-index: 5;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+
+  @media (max-width: 968px) {
+    .stats-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .stats {
+      padding: 4rem 0;
+      margin-top: 0;
+    }
+    .stat-card {
+      padding: 3rem 2rem;
+    }
+  }
+
+  .stat-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    padding: 4rem 3rem;
+    border-radius: 2.5rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 30px 60px -15px rgba(15, 42, 32, 0.1);
+    transition: var(--transition);
+  }
+
+  .stat-card:hover {
+    transform: translateY(-10px);
+    background: white;
+    box-shadow: 0 40px 80px -20px rgba(15, 42, 32, 0.15);
+  }
+
+  .stat-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+  }
+
+  .stat-number {
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1;
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .stat-label {
+    font-size: 1rem;
+    color: #718096;
+    text-transform: uppercase;
+    transition: transform 0.3s ease;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-10px);
+  }
+</style>

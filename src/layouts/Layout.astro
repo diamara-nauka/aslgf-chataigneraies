@@ -1,0 +1,74 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import BlogDrawer from '../components/BlogDrawer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | ASLGF Châtaigneraies</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"
+    ></script>
+  </head>
+  <body>
+    <Header />
+
+    <main>
+      <slot />
+    </main>
+
+    <BlogDrawer />
+
+    <Footer />
+
+    <script shadow:true>
+      // Global Reveal Animation using Intersection Observer
+      const observerOptions = {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.reveal, .reveal-stagger').forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Netlify Identity logic
+      // @ts-ignore
+      if (window.netlifyIdentity) {
+        // @ts-ignore
+        window.netlifyIdentity.on('init', (user) => {
+          if (!user) {
+            // @ts-ignore
+            window.netlifyIdentity.on('login', () => {
+              document.location.href = '/admin/';
+            });
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,276 @@
+---
+import { Image } from 'astro:assets';
+import missionImage from '../assets/img/IMG_20260313_155320.jpg';
+---
+
+<section id="mission" class="mission">
+  <div class="container">
+    <div class="mission-grid">
+      <div class="mission-visual reveal">
+        <div class="image-wrapper">
+          <Image src={missionImage} alt="Paysage forestier Héraultais" width="500" format="png" quality={80} />
+        </div>
+        <div class="stats-mini reveal">
+          <div class="stat-item">
+            <span class="value">310</span>
+            <span class="label">Hectares</span>
+          </div>
+          <div class="stat-item">
+            <span class="value">31</span>
+            <span class="label">Propriétaires</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mission-text">
+        <span class="subtitle reveal">Qui sommes-nous ?</span>
+        <h2 class="reveal">
+          Une initiative collective pour la <span>forêt</span>
+        </h2>
+
+        <div class="text-content reveal">
+          <p class="lead">
+            L’Association Syndicale Libre des châtaigneraies du Pays
+            Saint-Ponais a été créé en 2023 afin de rassembler les propriétaires
+            forestiers du territoire autour d’un projet de valorisation des
+            massifs forestiers environnants.
+          </p>
+          <p>
+            31 propriétaires ont adhéré au projet pour sa première phase,
+            regroupant ainsi 310 hectares de forêts sur les communes de <strong
+              >Courniou</strong
+            >, <strong>Saint-Pons-de-Thomières</strong>, et <strong
+              >Riols</strong
+            >, dans l’Hérault.
+          </p>
+        </div>
+
+        <div class="features-grid reveal">
+          <div class="feature-card">
+            <div class="icon">🌿</div>
+            <h3>Valorisation</h3>
+            <p>Permettre une valorisation de la ressource en bois via une sylviculture douce.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon">🤝</div>
+            <h3>Engagement</h3>
+            <p>Rassembler les acteurs locaux autour d’une filière bois respectueuses des humains et de la forêt.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .mission {
+    padding: 12rem 0;
+    background: var(--bg-light);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mission::before {
+    content: 'ASLGF';
+    position: absolute;
+    top: 5rem;
+    right: -2rem;
+    font-size: 15rem;
+    font-weight: 900;
+    color: rgba(26, 47, 35, 0.02);
+    z-index: 0;
+    line-height: 1;
+  }
+
+  .mission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .mission-visual {
+    position: relative;
+  }
+
+  .image-wrapper {
+    position: relative;
+    border-radius: 2rem;
+    overflow: hidden;
+    box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.2);
+    aspect-ratio: 4/5;
+  }
+
+  .image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s var(--transition);
+  }
+
+  .mission:hover .image-wrapper img {
+    transform: scale(1.05);
+  }
+
+  .stats-mini {
+    position: absolute;
+    bottom: -3rem;
+    right: -3rem;
+    background: var(--primary);
+    padding: 3rem;
+    border-radius: 2rem;
+    display: flex;
+    gap: 3rem;
+    color: white;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+  }
+
+  .stat-item .value {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-item .label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.7;
+    font-weight: 700;
+  }
+
+  .subtitle {
+    display: block;
+    color: var(--accent);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+  }
+
+  h2 {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    color: var(--primary);
+    margin-bottom: 3rem;
+    font-family: 'Playfair Display', serif;
+    line-height: 1.1;
+  }
+
+  h2 span {
+    color: var(--secondary);
+    font-style: italic;
+  }
+
+  .text-content p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #4a5568;
+    margin-bottom: 2rem;
+  }
+
+  .text-content .lead {
+    font-size: 1.4rem;
+    color: var(--primary);
+    font-weight: 500;
+    line-height: 1.6;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+
+  .feature-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    border: 1px solid #edf2f7;
+    transition: var(--transition);
+  }
+
+  .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    border-color: var(--accent);
+  }
+
+  .feature-card .icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .feature-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+  }
+
+  .feature-card p {
+    font-size: 0.95rem;
+    color: #718096;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 1100px) {
+    .mission-grid {
+      gap: 4rem;
+    }
+    .stats-mini {
+      position: relative;
+      bottom: 0;
+      right: 0;
+      margin-top: 2rem;
+      border-radius: 1.5rem;
+      padding: 2rem;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 968px) {
+    .mission-grid {
+      grid-template-columns: 1fr;
+    }
+    .mission {
+      padding: 6rem 0;
+    }
+    .features-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .stats-mini {
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: center;
+      text-align: center;
+      padding: 1.5rem;
+      width: 100%;
+    }
+    .stat-item .value {
+      font-size: 2rem;
+    }
+    .subtitle {
+      font-size: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 1.8rem;
+    }
+    .text-content .lead {
+      font-size: 1.1rem;
+    }
+    .text-content p {
+      font-size: 1rem;
+    }
+  }
+</style>

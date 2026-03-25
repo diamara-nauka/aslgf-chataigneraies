@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={post.data.title}>
+  <section class="post-detail">
+    <div class="container">
+      <div class="post-header">
+        <h1>{post.data.title}</h1>
+        <p class="post-description">{post.data.description}</p>
+      </div>
+      <div class="post-body">
+        <Content />
+      </div>
+      <a
+        href="/"
+        class="btn btn-secondary"
+        style="margin-top: 2rem; display: inline-block;">Retour à l'accueil</a
+      >
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .post-detail {
+    padding: 12rem 0 8rem 0;
+    min-height: 80vh;
+  }
+  .post-header {
+    margin-bottom: 3rem;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 2rem;
+  }
+  .post-header h1 {
+    font-size: 3.5rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+  }
+  .post-description {
+    font-size: 1.2rem;
+    opacity: 0.8;
+  }
+  .post-body {
+    font-size: 1.1rem;
+  }
+  .post-body :global(p) {
+    margin-bottom: 1.5rem;
+  }
+  .post-body :global(img) {
+    max-width: 100%;
+    height: auto;
+
+  }
+</style>

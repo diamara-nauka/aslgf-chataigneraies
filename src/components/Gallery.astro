@@ -1,0 +1,139 @@
+---
+import { Image } from 'astro:assets';
+import img1 from '../assets/img/IMG_20260313_164447.jpg';
+import img2 from '../assets/img/IMG_20240528_142700.jpg';
+import img4 from '../assets/img/IMG_20260309_111850.jpg';
+import img6 from '../assets/img/IMG_20260313_164317.jpg';
+import img5 from '../assets/img/IMG_20240528_151037.jpg';
+import img3 from '../assets/img/IMG_20260313_155320.jpg';
+import img7 from '../assets/img/IMG_20260309_115602.jpg';
+---
+
+<section id="gallery" class="gallery-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="subtitle">La forêt en images</span>
+      <h2>Le projet SMURF sur le terrain</h2>
+      <p>Découvrez la beauté et la diversité de nos châtaigneraies à travers ces clichés pris au cœur de notre territoire.</p>
+    </div>
+
+    <div class="bento-grid">
+      <div class="bento-item item-main reveal">
+        <Image src={img1} width="560" alt="Projet SMURF" class="gallery-img" format="png" quality={80} />
+      </div>
+      <div class="bento-item reveal">
+        <Image src={img2}  width="266"  alt="Châtaigneraie" class="gallery-img" format="png" quality={80} />
+      </div>
+      <div class="bento-item reveal">
+        <Image src={img3}  width="266"  alt="Forêt" class="gallery-img" format="png" quality={80} />
+      </div>
+      <div class="bento-item item-wide reveal">
+        <Image src={img4}  width="560"  alt="Paysage forestier" class="gallery-img" format="png" quality={80} />
+      </div>
+      <div class="bento-item item-wide ">
+        <Image src={img5}  width="560"  alt="Projet SMURF suite" class="gallery-img" format="png" quality={80} />
+      </div>
+      <div class="bento-item reveal">
+        <Image src={img6} width="266"  alt="Arbres" class="gallery-img" format="png" quality={80} />
+      </div>
+      <div class="bento-item reveal">
+        <Image src={img7}  width="266"  alt="Détail en forêt" class="gallery-img" format="png" quality={80} />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .gallery-section {
+    padding: 10rem 0;
+    background: #fdfdfc;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 5rem;
+  }
+
+  .subtitle {
+    display: block;
+    color: var(--accent);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+
+  h2 {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    font-family: 'Playfair Display', serif;
+  }
+
+  p {
+    font-size: 1.15rem;
+    color: #4a5568;
+    line-height: 1.6;
+  }
+
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 250px;
+    gap: 1.5rem;
+  }
+
+  .bento-item {
+    position: relative;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  }
+
+  .gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .bento-item:hover .gallery-img {
+    transform: scale(1.05);
+  }
+
+  /* Bento specific spans */
+  .item-main {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  
+  .item-wide {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+
+  .item-tall {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+
+  @media (max-width: 968px) {
+    .bento-grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 200px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .bento-grid {
+      grid-template-columns: 1fr;
+      grid-auto-rows: 250px;
+    }
+    .item-main, .item-wide, .item-tall {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+  }
+</style>

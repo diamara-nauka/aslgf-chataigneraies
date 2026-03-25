@@ -1,0 +1,269 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const formatDate = (date: Date) => {
+  return new Intl.DateTimeFormat('fr-FR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  }).format(date);
+};
+---
+
+<div id="drawer" class="drawer">
+  <div class="drawer-header">
+    <h2>Actualités de la Forêt</h2>
+    <button id="drawer-close" aria-label="Fermer le menu">&times;</button>
+  </div>
+  <div class="drawer-content">
+    <div class="mobile-nav">
+      <h3>Navigation</h3>
+      <ul>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/#mission">Mission</a></li>
+        <li><a href="/partenaires">Partenaires</a></li>
+        <li><a href="/#action">Agir</a></li>
+      </ul>
+    </div>
+
+    <div class="blog-section">
+      <h3>Actualités</h3>
+      <ul class="post-list">
+        {
+          sortedPosts.map((post) => (
+            <li class="post-item">
+              <span class="post-date">{formatDate(post.data.date)}</span>
+              <h4>
+                <a href={`/posts/${post.slug}/`}>{post.data.title}</a>
+              </h4>
+              <p>{post.data.description}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</div>
+<div id="drawer-overlay" class="drawer-overlay"></div>
+
+<style>
+  .drawer {
+    position: fixed;
+    top: 0;
+    right: -450px;
+    width: 450px;
+    height: 100vh;
+    background: white;
+    z-index: 2000;
+    box-shadow: -10px 0 50px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    padding: 3rem;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  @media (max-width: 500px) {
+    .drawer {
+      width: 100%;
+      right: -100%;
+    }
+  }
+
+  .drawer.open {
+    transform: translateX(-450px);
+  }
+
+  @media (max-width: 500px) {
+    .drawer.open {
+      transform: translateX(-100%);
+    }
+  }
+
+  .drawer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(15, 42, 32, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 1999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+  }
+
+  .drawer-overlay.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4rem;
+  }
+
+  .drawer-header h2 {
+    font-size: 1.5rem;
+    color: var(--primary);
+    font-family: 'Playfair Display', serif;
+  }
+
+  #drawer-close {
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    color: var(--primary);
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  #drawer-close:hover {
+    color: var(--accent);
+    transform: scale(1.1) rotate(90deg);
+  }
+
+  .mobile-nav {
+    display: none;
+    margin-bottom: 4rem;
+  }
+
+  @media (max-width: 968px) {
+    .mobile-nav {
+      display: block;
+    }
+  }
+
+  .mobile-nav h3,
+  .blog-section h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    font-weight: 800;
+  }
+
+  .mobile-nav ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .mobile-nav li {
+    margin-bottom: 1.5rem;
+  }
+
+  .mobile-nav a {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary);
+    text-decoration: none;
+    font-family: 'Playfair Display', serif;
+    transition: color 0.3s ease;
+  }
+
+  .mobile-nav a:hover {
+    color: var(--accent);
+  }
+
+  .post-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .post-item {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #edf2f7;
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .drawer.open .post-item {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Stagger animation for items */
+  .drawer.open .post-item:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+  .drawer.open .post-item:nth-child(2) {
+    transition-delay: 0.2s;
+  }
+  .drawer.open .post-item:nth-child(3) {
+    transition-delay: 0.3s;
+  }
+  .drawer.open .post-item:nth-child(4) {
+    transition-delay: 0.4s;
+  }
+  .drawer.open .post-item:nth-child(5) {
+    transition-delay: 0.5s;
+  }
+
+  .post-date {
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .post-item h4 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .post-item h4 a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .post-item h4 a:hover {
+    color: var(--accent);
+  }
+
+  .post-item p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #4a5568;
+  }
+</style>
+
+<script>
+  const drawer = document.getElementById('drawer');
+  const overlay = document.getElementById('drawer-overlay');
+  const toggle = document.getElementById('drawer-toggle');
+  const close = document.getElementById('drawer-close');
+
+  const openDrawer = () => {
+    drawer?.classList.add('open');
+    overlay?.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.body.style.touchAction = 'none'; // Extra safety for mobile
+  };
+
+  const closeDrawer = () => {
+    drawer?.classList.remove('open');
+    overlay?.classList.remove('open');
+    document.body.style.overflow = '';
+    document.body.style.touchAction = '';
+  };
+
+  toggle?.addEventListener('click', openDrawer);
+  close?.addEventListener('click', closeDrawer);
+  overlay?.addEventListener('click', closeDrawer);
+</script>

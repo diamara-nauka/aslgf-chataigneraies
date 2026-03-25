@@ -1,0 +1,274 @@
+---
+import { Image } from 'astro:assets';
+import woodCraftImage from '../assets/img/IMG_20260309_115602.jpg';
+---
+
+<section id="project" class="project-description">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="subtitle">Valorisation & Vision</span>
+      <h2>Un projet d'avenir pour le territoire</h2>
+    </div>
+
+    <div class="project-grid">
+      <div class="project-content">
+        <div class="text-block reveal">
+          <h3 class="serif">Héritage & Transition</h3>
+          <p>
+            Autrefois, la culture de la châtaigne structurait la vallée. La
+            déprise agricole et l’utilisation des anciens vergers de
+            châtaigniers pour l’extraction de tanin ont progressivement
+            transformé les paysages. Depuis, ces châtaigneraies sont souvent
+            exploitées en coupes rases de taillis à intervalles réguliers, un
+            mode de gestion aux effets notables sur les sols, la biodiversité et
+            la qualité sylvicole des peuplements.
+          </p>
+          <p>
+            La forêt vieillit désormais sans réelle perspective d’amélioration,
+            perpétuant ce modèle. Le changement climatique accentue encore ces
+            difficultés pour les châtaigneraies locales.
+          </p>
+        </div>
+
+        <div class="text-block smcc reveal">
+          <h3 class="serif">Modèle SMCC</h3>
+          <p>
+            L’objectif de l’ASLGF est de remettre en gestion ces forêts
+            longtemps laissées sans intervention. La coupe rase est écartée au
+            profit des principes de la <strong
+              >Sylviculture Mélangée à Couvert Continu (SMCC)</strong
+            >, appliqués à l’ensemble des peuplements. Ce mode de gestion vise à
+            améliorer la qualité des bois, protéger les sols, favoriser la
+            diversité d’essences, renforcer la biodiversité et intégrer les
+            dimensions sociales liées à la forêt.
+          </p>
+        </div>
+
+        <div class="text-block reveal">
+          <h3 class="serif">Filière Bois Locale</h3>
+          <p>
+            Au-delà de la gestion, le territoire a besoin d’une filière bois
+            locale, notamment autour du châtaignier, pour valoriser la matière
+            sur place. Cette dynamique permet de créer des emplois pour les
+            exploitants forestiers, scieurs, menuisiers, gestionnaires
+            forestiers et autres acteurs liés directement ou indirectement à la
+            forêt.
+          </p>
+          <p>
+            L’ASLGF s’attache ainsi à collaborer avec des entrepreneurs locaux
+            et à privilégier la valorisation de la ressource à l’échelle du
+            territoire.
+          </p>
+        </div>
+      </div>
+
+      <div class="project-sticky reveal">
+        <div class="sticky-image">
+          <Image
+            src={woodCraftImage}
+            alt="Valorisation du bois de châtaignier"
+            format="png"
+            quality={80}
+          />
+          <div class="image-overlay-info">
+            <p>Savoir-faire local</p>
+            <div class="line"></div>
+          </div>
+        </div>
+
+        <div class="quote-box">
+          <blockquote>
+            "Privilégier la valorisation de la ressource à l’échelle du
+            territoire."
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .project-description {
+    padding: 10rem 0;
+    background: white;
+    position: relative;
+  }
+
+  .section-header {
+    margin-bottom: 6rem;
+    text-align: center;
+  }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10vw;
+    align-items: start;
+  }
+
+  .project-content {
+    display: grid;
+    gap: 5rem;
+  }
+
+  .text-block h3 {
+    font-size: 1.8rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+  }
+
+  .text-block h3::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    width: 3rem;
+    height: 3px;
+    background: var(--accent);
+  }
+
+  .text-block.smcc {
+    background: #f0f7f2;
+    padding: 3rem;
+    border-radius: 2rem;
+    border-left: 5px solid var(--accent);
+  }
+
+  .serif {
+    font-family: 'Playfair Display', serif;
+  }
+
+  p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #4a5568;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-sticky {
+    position: sticky;
+    top: 8rem;
+  }
+
+  .sticky-image {
+    position: relative;
+    border-radius: 2rem;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+    margin-bottom: 3rem;
+  }
+
+  .sticky-image img {
+    width: 100%;
+    height: auto;
+    max-height: 70vh;
+    object-fit: cover;
+    display: block;
+  }
+
+  .image-overlay-info {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    color: white;
+    z-index: 2;
+  }
+
+  .image-overlay-info .line {
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+    margin-top: 0.5rem;
+  }
+
+  .sticky-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
+  }
+
+  .quote-box {
+    padding: 3rem;
+    background: var(--primary);
+    border-radius: 2rem;
+    color: white;
+  }
+
+  blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-style: italic;
+    line-height: 1.4;
+    position: relative;
+  }
+
+  blockquote::before {
+    content: '"';
+    position: absolute;
+    top: -2rem;
+    left: -1rem;
+    font-size: 5rem;
+    color: var(--accent);
+    opacity: 0.3;
+  }
+
+  @media (max-width: 968px) {
+    .project-description {
+      padding: 4rem 0;
+      overflow: hidden;
+    }
+    .project-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      width: 100%;
+      max-width: 100%;
+    }
+    .project-content {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      width: 100%;
+      max-width: 100%;
+    }
+    .text-block {
+      width: 100%;
+      max-width: 100%;
+      overflow-wrap: break-word;
+    }
+    .project-sticky {
+      position: relative;
+      top: 0;
+      margin-top: 2rem;
+      width: 100%;
+      max-width: 100%;
+    }
+    .text-block.smcc {
+      padding: 1.5rem;
+      border-radius: 1.5rem;
+    }
+    .quote-box {
+      padding: 1.5rem;
+      border-radius: 1.5rem;
+    }
+    blockquote {
+      font-size: 1.2rem;
+    }
+    .sticky-image {
+      border-radius: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    h3 {
+      font-size: 1.5rem !important;
+    }
+    p {
+      font-size: 1rem !important;
+    }
+  }
+</style>
