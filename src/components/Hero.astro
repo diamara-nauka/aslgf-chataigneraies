@@ -1,11 +1,11 @@
 ---
 import { Image } from 'astro:assets';
-import heroVideo from '../assets/video/VID_20260309_111657.mp4';
+import heroBg from '../assets/img/IMG_20240528_142700.jpg';
 ---
 
 <section class="hero">
   <div class="hero-bg-container">
-    <video src={heroVideo} autoplay loop muted playsinline class="hero-bg"></video>
+    <Image src={heroBg} alt="Forêt de châtaigneraies du Pays Saint-Ponais" class="hero-bg" quality="max" />
     <div class="hero-overlay"></div>
   </div>
 
@@ -54,7 +54,16 @@ import heroVideo from '../assets/video/VID_20260309_111657.mp4';
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transform: scale(1.05); /* Prepped for subtle parallax */
+    animation: slowZoom 20s infinite alternate ease-in-out;
+  }
+
+  @keyframes slowZoom {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.1);
+    }
   }
 
   .hero-overlay {
@@ -65,8 +74,8 @@ import heroVideo from '../assets/video/VID_20260309_111657.mp4';
     height: 100%;
     background: linear-gradient(
       to bottom,
-      rgba(15, 42, 32, 0.6) 0%,
-      rgba(15, 42, 32, 0.8) 70%,
+      rgba(15, 42, 32, 0.4) 0%,
+      rgba(15, 42, 32, 0.6) 70%,
       var(--primary) 100%
     );
   }
