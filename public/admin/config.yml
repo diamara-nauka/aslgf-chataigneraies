@@ -1,5 +1,6 @@
 backend:
   name: git-gateway
+  repo: ASLGF-chataigneraies/aslgf-chataigneraies
   branch: main
 
 media_folder: "public/img" # Où les images seront stockées

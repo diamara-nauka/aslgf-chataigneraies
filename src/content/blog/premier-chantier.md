@@ -1,16 +1,17 @@
 ---
-title: "Premier chantier d’éclaircie dans un taillis haut de châtaignier"
+title: Premier chantier d’éclaircie dans un taillis haut de châtaignier
+description: Retour sur le succès du tout premier chantier d'éclaircie
+  forestière mené par l'ASLGF au printemps.
 date: 2026-03-16
-description: "Retour sur le succès du tout premier chantier d'éclaircie forestière mené par l'ASLGF au printemps."
-tags: ["chantier", "éclaircie", "bois"]
+tags:
+  - chantier
+  - éclaircie
+  - bois
 ---
+![](/img/img_20260313_164447.jpg)
 
-<div style="display: flex; justify-content: center; margin: 2rem 0;">
-
-![Premier chantier d'éclaircie](./IMG_20260313_164447.jpg)
-
-</div>
-
+\
+\
 🌳 **Premier chantier d’éclaircie dans un taillis haut de châtaignier** 🌳
 
 L’ASLGF du Pays Saint-Ponais est heureuse de partager le succès de son premier chantier d’éclaircie !
@@ -20,6 +21,7 @@ Pendant 4 jours, du lundi 9 mars au vendredi 13 mars, une équipe engagée compo
 Malgré un début de semaine marqué par les giboulées de mars, la météo s’est finalement montrée au beau fixe, offrant de bonnes conditions de travail sur la fin du chantier. Les débuts ont toutefois été rendus plus complexes par un peuplement particulièrement dense, nécessitant rigueur et précision dans l’intervention.
 
 👉 **Un très beau chantier, avec au total environ 65 m³ de bois prélevés :**
+
 * ✔️ Environ 30 m³ de bois d’œuvre, majoritairement destiné à la charpente
 * ✔️ 12 stères de bois de piquets
 * ✔️ 38 stères de bois de chauffage
@@ -30,6 +32,6 @@ En termes de qualité, quelques défauts de roulure et de pourriture ont été o
 
 <div style="display: flex; justify-content: center; margin: 2rem 0;">
 
-![Premier chantier d'éclaircie](./IMG_20260313_155320.jpg)
+![Premier chantier d'éclaircie](/img/img_20260313_155320.jpg)
 
 </div>
