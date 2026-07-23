@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { partners } from '../data/partners';
+import { Image } from 'astro:assets';
 ---
 
 <Layout title="Nos Partenaires">
@@ -22,7 +23,16 @@ import { partners } from '../data/partners';
           partners.map(partner => (
             <div class="partner-details">
               <div class="partner-meta">
-                <div class="logo-box">{partner.name}</div>
+                <div class="logo-box">
+                  <Image
+                    src={partner.logo}
+                    alt="Logo Alcina"
+                    class="partner-logo-img"
+                    format="png"
+                    quality={80}
+                    width={150}
+                  />
+                </div>
                 {partner.website && (
                   <a
                     href={partner.website}
@@ -114,7 +124,6 @@ import { partners } from '../data/partners';
     font-size: 2rem;
     font-weight: 800;
     color: var(--primary);
-    opacity: 0.1;
     margin-bottom: 1.5rem;
   }
 
