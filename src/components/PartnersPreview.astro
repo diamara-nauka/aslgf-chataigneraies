@@ -1,7 +1,6 @@
 ---
 import { partners } from '../data/partners';
 import { Image } from 'astro:assets';
-import logoAlcina from '../assets/img/logo_alcina.png';
 ---
 
 <section class="partners-preview">
@@ -17,17 +16,17 @@ import logoAlcina from '../assets/img/logo_alcina.png';
 
     <div class="partners-grid">
       {
-        partners.map((partner) => (
+        partners.map(partner => (
           <div class="partner-card reveal">
             <div class="partner-logo-box">
-              {partner.id === 'alcina' ? (
-                <Image src={logoAlcina} alt="Logo Alcina" class="partner-logo-img" format="png" quality={80} />
-              ) : (
-                <>
-                  <span class="placeholder-icon">{partner.name[0]}</span>
-                  <span class="placeholder-text">Logo {partner.name}</span>
-                </>
-              )}
+              <Image
+                src={partner.logo}
+                alt="Logo Alcina"
+                class="partner-logo-img"
+                format="png"
+                quality={80}
+                width={84}
+              />
             </div>
             <h3>{partner.name}</h3>
             <p>{partner.description.split('.')[0]}.</p>
@@ -88,11 +87,13 @@ import logoAlcina from '../assets/img/logo_alcina.png';
     .partners-preview {
       padding: 6rem 0;
     }
+
     .partners-grid {
       grid-template-columns: 1fr;
       gap: 2rem;
       margin-bottom: 4rem;
     }
+
     .partner-card {
       padding: 3rem 2rem;
     }

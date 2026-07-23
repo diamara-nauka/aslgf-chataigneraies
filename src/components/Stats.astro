@@ -2,7 +2,7 @@
 const stats = [
   { number: '31', label: 'Propriétaires adhérents' },
   { number: '310', label: 'Hectares en gestion' },
-  { number: '2023', label: 'Année de création' }
+  { number: '2023', label: 'Année de création' },
 ];
 ---
 
@@ -10,7 +10,7 @@ const stats = [
   <div class="container">
     <div class="stats-grid">
       {
-        stats.map((stat) => (
+        stats.map(stat => (
           <div class="stat-card reveal">
             <div class="stat-icon">
               {stat.label.includes('Adhérents') && '👥'}

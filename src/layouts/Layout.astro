@@ -23,8 +23,6 @@ const { title } = Astro.props;
       href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
       rel="stylesheet"
     />
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"
-    ></script>
   </head>
   <body>
     <Header />
@@ -37,38 +35,24 @@ const { title } = Astro.props;
 
     <Footer />
 
-    <script shadow:true>
+    <script>
       // Global Reveal Animation using Intersection Observer
       const observerOptions = {
         threshold: 0.15,
-        rootMargin: '0px 0px -50px 0px'
+        rootMargin: '0px 0px -50px 0px',
       };
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('active');
           }
         });
       }, observerOptions);
 
-      document.querySelectorAll('.reveal, .reveal-stagger').forEach((el) => {
+      document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => {
         observer.observe(el);
       });
-
-      // Netlify Identity logic
-      // @ts-ignore
-      if (window.netlifyIdentity) {
-        // @ts-ignore
-        window.netlifyIdentity.on('init', (user) => {
-          if (!user) {
-            // @ts-ignore
-            window.netlifyIdentity.on('login', () => {
-              document.location.href = '/admin/';
-            });
-          }
-        });
-      }
     </script>
   </body>
 </html>

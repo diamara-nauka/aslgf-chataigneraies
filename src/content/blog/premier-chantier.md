@@ -8,6 +8,7 @@ tags:
   - éclaircie
   - bois
 ---
+
 ![](/img/img_20260313_164447.jpg)
 
 \
@@ -22,9 +23,9 @@ Malgré un début de semaine marqué par les giboulées de mars, la météo s’
 
 👉 **Un très beau chantier, avec au total environ 65 m³ de bois prélevés :**
 
-* ✔️ Environ 30 m³ de bois d’œuvre, majoritairement destiné à la charpente
-* ✔️ 12 stères de bois de piquets
-* ✔️ 38 stères de bois de chauffage
+- ✔️ Environ 30 m³ de bois d’œuvre, majoritairement destiné à la charpente
+- ✔️ 12 stères de bois de piquets
+- ✔️ 38 stères de bois de chauffage
 
 En termes de qualité, quelques défauts de roulure et de pourriture ont été observés sur certaines grumes, mais l’ensemble reste très satisfaisant avec une belle valorisation du peuplement. Le bois a été soigneusement trié et stocké en bord de route, prêt à être valorisé.
 
