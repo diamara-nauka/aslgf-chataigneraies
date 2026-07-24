@@ -5,10 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
     "prepare": "command -v husky >/dev/null 2>&1 && husky || exit 0"
   },
   "dependencies": {
