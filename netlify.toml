@@ -1,5 +1,6 @@
 [build]
-  command = "npx astro build"
+  command = "bunx --bun astro build"
   publish = "dist"
 [build.environment]
-  NODE_ENV = "production"
+  BUN_VERSION = "1.3.14"
+  BUN_FLAGS = "--production"

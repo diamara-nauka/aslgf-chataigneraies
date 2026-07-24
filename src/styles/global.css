@@ -23,7 +23,7 @@ body {
 }
 
 body {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Helvetica', sans-serif;
   color: var(--text);
   background-color: var(--bg-light);
   line-height: 1.6;
