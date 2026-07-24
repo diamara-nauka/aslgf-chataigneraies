@@ -269,4 +269,11 @@ const formatDate = (date: Date) => {
   toggle?.addEventListener('click', openDrawer);
   close?.addEventListener('click', closeDrawer);
   overlay?.addEventListener('click', closeDrawer);
+
+  drawer?.addEventListener('click', e => {
+    const target = e.target as HTMLElement | null;
+    if (target?.closest('a')) {
+      closeDrawer();
+    }
+  });
 </script>
