@@ -4,7 +4,10 @@ import logoAslgf from '../assets/img/logo_aslgf.png';
 
 const { pathname } = Astro.url;
 const normalizedPath = pathname.replace(/\/$/, '') || '/';
-const hasDarkHero = normalizedPath === '/' || normalizedPath === '/partenaires';
+const hasDarkHero =
+  normalizedPath === '/' ||
+  normalizedPath === '/partenaires' ||
+  normalizedPath === '/actualites';
 ---
 
 <header
