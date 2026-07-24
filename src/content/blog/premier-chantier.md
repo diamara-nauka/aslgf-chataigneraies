@@ -9,7 +9,7 @@ tags:
   - bois
 ---
 
-![](/img/img_20260313_164447.jpg)
+![](./IMG_20260313_164447.jpg)
 
 \
 \
@@ -33,6 +33,6 @@ En termes de qualité, quelques défauts de roulure et de pourriture ont été o
 
 <div style="display: flex; justify-content: center; margin: 2rem 0;">
 
-![Premier chantier d'éclaircie](/img/img_20260313_155320.jpg)
+![Premier chantier d'éclaircie](./IMG_20260313_155320.jpg)
 
 </div>
