@@ -1,0 +1,232 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const formatDate = (date: Date) => {
+  return new Intl.DateTimeFormat('fr-FR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(date);
+};
+---
+
+<Layout title="Actualités & Vie de la Forêt">
+  <div class="actualites-hero">
+    <div class="container">
+      <span class="hero-badge">Journal & Actualités</span>
+      <h1>Vie de la Forêt</h1>
+      <p class="hero-description">
+        Suivez les projets, les chantiers forestiers, et la gestion durable de
+        la forêt des Châtaigneraies.
+      </p>
+    </div>
+  </div>
+
+  <section class="actualites-content">
+    <div class="container">
+      <div class="posts-grid">
+        {
+          sortedPosts.map(post => (
+            <article class="post-card">
+              <a href={`/posts/${post.id}/`} class="post-card-link">
+                <div class="card-content">
+                  <div class="card-meta">
+                    <span class="post-date">{formatDate(post.data.date)}</span>
+                    {post.data.tags && post.data.tags.length > 0 && (
+                      <span class="post-tag">{post.data.tags[0]}</span>
+                    )}
+                  </div>
+                  <h2 class="post-title">{post.data.title}</h2>
+                  <p class="post-description">{post.data.description}</p>
+                  <div class="card-footer">
+                    <span class="read-more">
+                      Lire la suite
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .actualites-hero {
+    background: linear-gradient(135deg, var(--primary) 0%, #0d1a13 100%);
+    padding: 11rem 0 5rem 0;
+    color: var(--white);
+    text-align: center;
+  }
+
+  .hero-badge {
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+
+  .actualites-hero h1 {
+    font-size: 3.5rem;
+    color: var(--white);
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .hero-description {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .actualites-content {
+    padding: 5rem 0 8rem 0;
+    background-color: var(--bg-light);
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2.5rem;
+  }
+
+  .post-card {
+    background: var(--white);
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .post-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(26, 47, 35, 0.08);
+    border-color: rgba(130, 172, 74, 0.3);
+  }
+
+  .post-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 2.2rem;
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .post-date {
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .post-tag {
+    font-size: 0.75rem;
+    background: rgba(130, 172, 74, 0.15);
+    color: var(--primary);
+    padding: 0.25rem 0.6rem;
+    border-radius: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .post-title {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+    line-height: 1.35;
+    transition: color 0.3s ease;
+  }
+
+  .post-card:hover .post-title {
+    color: var(--accent);
+  }
+
+  .post-description {
+    font-size: 1rem;
+    color: #4a5568;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    padding-top: 1.2rem;
+    border-top: 1px solid #edf2f7;
+  }
+
+  .read-more {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--primary);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition:
+      gap 0.3s ease,
+      color 0.3s ease;
+  }
+
+  .post-card:hover .read-more {
+    color: var(--accent);
+    gap: 0.8rem;
+  }
+
+  @media (max-width: 768px) {
+    .actualites-hero {
+      padding: 8rem 0 4rem 0;
+    }
+    .actualites-hero h1 {
+      font-size: 2.5rem;
+    }
+    .posts-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

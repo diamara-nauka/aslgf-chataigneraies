@@ -27,9 +27,9 @@ const hasDarkHero = normalizedPath === '/' || normalizedPath === '/partenaires';
     </div>
     <div class="nav-links">
       <a href="/#mission">Mission</a>
+      <a href="/actualites">Actualités</a>
       <a href="/partenaires">Partenaires</a>
       <button id="drawer-toggle" aria-label="Menu">
-        <span class="blog-text">Blog</span>
         <span class="burger-icon"></span>
       </button>
     </div>
@@ -143,10 +143,10 @@ const hasDarkHero = normalizedPath === '/' || normalizedPath === '/partenaires';
   }
 
   #drawer-toggle {
+    display: none;
     background: none;
     border: none;
     cursor: pointer;
-    display: flex;
     align-items: center;
     gap: 1rem;
     padding: 1rem 1.2rem;
@@ -156,11 +156,18 @@ const hasDarkHero = normalizedPath === '/' || normalizedPath === '/partenaires';
     transition: all 0.3s ease;
   }
 
+  @media (max-width: 968px) {
+    #drawer-toggle {
+      display: flex;
+    }
+  }
+
   @media (max-width: 480px) {
     .logo {
       font-size: 1.4rem;
     }
     #drawer-toggle {
+      display: flex;
       padding: 1.2rem 1.5rem;
     }
     .blog-text {

@@ -1,51 +1,21 @@
 ---
-import { getCollection } from 'astro:content';
-
-const posts = await getCollection('blog');
-const sortedPosts = posts.sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-);
-
-const formatDate = (date: Date) => {
-  return new Intl.DateTimeFormat('fr-FR', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  }).format(date);
-};
+// Drawer de navigation mobile uniquement
 ---
 
 <div id="drawer" class="drawer">
   <div class="drawer-header">
-    <h2>Actualités de la Forêt</h2>
+    <span class="drawer-logo">Menu</span>
     <button id="drawer-close" aria-label="Fermer le menu">&times;</button>
   </div>
   <div class="drawer-content">
-    <div class="mobile-nav">
-      <h3>Navigation</h3>
+    <nav class="mobile-nav">
       <ul>
         <li><a href="/">Accueil</a></li>
         <li><a href="/#mission">Mission</a></li>
+        <li><a href="/actualites">Actualités</a></li>
         <li><a href="/partenaires">Partenaires</a></li>
       </ul>
-    </div>
-
-    <div class="blog-section">
-      <h3>Actualités</h3>
-      <ul class="post-list">
-        {
-          sortedPosts.map(post => (
-            <li class="post-item">
-              <a href={`/posts/${post.id}/`} class="post-link">
-                <span class="post-date">{formatDate(post.data.date)}</span>
-                <h4>{post.data.title}</h4>
-                <p>{post.data.description}</p>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
+    </nav>
   </div>
 </div>
 <div id="drawer-overlay" class="drawer-overlay"></div>
@@ -54,33 +24,26 @@ const formatDate = (date: Date) => {
   .drawer {
     position: fixed;
     top: 0;
-    right: -450px;
-    width: 450px;
+    right: 0;
+    width: 320px;
     height: 100vh;
-    background: white;
+    background: var(--primary);
     z-index: 2000;
-    box-shadow: -10px 0 50px rgba(0, 0, 0, 0.1);
-    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-    padding: 3rem;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    box-shadow: -10px 0 50px rgba(0, 0, 0, 0.3);
+    transform: translateX(100%);
+    transition: transform 0.45s cubic-bezier(0.77, 0, 0.175, 1);
+    display: flex;
+    flex-direction: column;
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 400px) {
     .drawer {
       width: 100%;
-      right: -100%;
     }
   }
 
   .drawer.open {
-    transform: translateX(-450px);
-  }
-
-  @media (max-width: 500px) {
-    .drawer.open {
-      transform: translateX(-100%);
-    }
+    transform: translateX(0);
   }
 
   .drawer-overlay {
@@ -89,12 +52,12 @@ const formatDate = (date: Date) => {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: rgba(15, 42, 32, 0.4);
+    background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(4px);
     z-index: 1999;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.5s ease;
+    transition: all 0.45s ease;
   }
 
   .drawer-overlay.open {
@@ -106,143 +69,90 @@ const formatDate = (date: Date) => {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 4rem;
+    padding: 2.5rem 2.5rem 2rem 2.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  .drawer-header h2 {
-    font-size: 1.5rem;
-    color: var(--primary);
-    font-family: 'Playfair Display', serif;
+  .drawer-logo {
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent);
   }
 
   #drawer-close {
     background: none;
     border: none;
-    font-size: 2.5rem;
-    color: var(--primary);
+    font-size: 2rem;
+    color: white;
     cursor: pointer;
     line-height: 1;
     padding: 0;
     transition:
       color 0.3s ease,
       transform 0.3s ease;
+    opacity: 0.7;
   }
 
   #drawer-close:hover {
     color: var(--accent);
-    transform: scale(1.1) rotate(90deg);
+    opacity: 1;
+    transform: rotate(90deg);
   }
 
-  .mobile-nav {
-    display: none;
-    margin-bottom: 4rem;
-  }
-
-  @media (max-width: 968px) {
-    .mobile-nav {
-      display: block;
-    }
-  }
-
-  .mobile-nav h3,
-  .blog-section h3 {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--accent);
-    margin-bottom: 2rem;
-    font-weight: 800;
+  .drawer-content {
+    padding: 3rem 2.5rem;
+    flex: 1;
   }
 
   .mobile-nav ul {
     list-style: none;
     padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
   .mobile-nav li {
-    margin-bottom: 1.5rem;
-  }
-
-  .mobile-nav a {
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--primary);
-    text-decoration: none;
-    font-family: 'Playfair Display', serif;
-    transition: color 0.3s ease;
-  }
-
-  .mobile-nav a:hover {
-    color: var(--accent);
-  }
-
-  .post-list {
-    list-style: none;
-    padding: 0;
-  }
-
-  .post-item {
-    margin-bottom: 3rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid #edf2f7;
     opacity: 0;
-    transform: translateX(30px);
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateX(20px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .drawer.open .post-item {
+  .drawer.open .mobile-nav li {
     opacity: 1;
     transform: translateX(0);
   }
 
-  /* Stagger animation for items */
-  .drawer.open .post-item:nth-child(1) {
+  .drawer.open .mobile-nav li:nth-child(1) {
     transition-delay: 0.1s;
   }
-  .drawer.open .post-item:nth-child(2) {
+  .drawer.open .mobile-nav li:nth-child(2) {
+    transition-delay: 0.15s;
+  }
+  .drawer.open .mobile-nav li:nth-child(3) {
     transition-delay: 0.2s;
   }
-  .drawer.open .post-item:nth-child(3) {
-    transition-delay: 0.3s;
-  }
-  .drawer.open .post-item:nth-child(4) {
-    transition-delay: 0.4s;
-  }
-  .drawer.open .post-item:nth-child(5) {
-    transition-delay: 0.5s;
+  .drawer.open .mobile-nav li:nth-child(4) {
+    transition-delay: 0.25s;
   }
 
-  .post-link {
-    display: block;
+  .mobile-nav a {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: white;
     text-decoration: none;
-    color: inherit;
-  }
-
-  .post-date {
-    font-size: 0.85rem;
-    color: var(--accent);
-    font-weight: 600;
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-
-  .post-item h4 {
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
     font-family: 'Playfair Display', serif;
-    color: var(--primary);
+    display: block;
+    padding: 0.5rem 0;
     transition: color 0.3s ease;
+    border-bottom: 1px solid transparent;
   }
 
-  .post-link:hover h4 {
+  .mobile-nav a:hover {
     color: var(--accent);
-  }
-
-  .post-item p {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #4a5568;
   }
 </style>
 
@@ -256,7 +166,7 @@ const formatDate = (date: Date) => {
     drawer?.classList.add('open');
     overlay?.classList.add('open');
     document.body.style.overflow = 'hidden';
-    document.body.style.touchAction = 'none'; // Extra safety for mobile
+    document.body.style.touchAction = 'none';
   };
 
   const closeDrawer = () => {
