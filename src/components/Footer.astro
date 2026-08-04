@@ -1,5 +1,6 @@
 ---
-
+import { Image } from 'astro:assets';
+import facebookLogo from '../assets/img/Facebook_logo.png';
 ---
 
 <footer>
@@ -12,7 +13,18 @@
       </p>
       <div class="footer-social">
         <!--<a href="mailto:Adresse.email@gmail.com" class="social-link">Email</a>-->
-        <!--<a href="#" class="social-link">Facebook</a>-->
+        <a
+          target="_blank"
+          href="https://www.facebook.com/people/Ch%C3%A2taigneraies-du-pays-Saint-Ponais/61579550630244/"
+        >
+          <Image
+            src={facebookLogo}
+            alt="Facebook Logo"
+            format="png"
+            quality={70}
+            width={42}
+          />
+        </a>
         <!--<a href="#" class="social-link">Youtube</a>-->
       </div>
     </div>
