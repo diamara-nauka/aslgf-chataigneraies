@@ -4,9 +4,9 @@
   "description": "Protection Forestière - Astro",
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
+    "dev": "bunx --bun astro dev",
+    "build": "bunx --bun astro check && bunx --bun astro build",
+    "preview": "bunx --bun astro preview",
     "prepare": "command -v husky >/dev/null 2>&1 && husky || exit 0"
   },
   "dependencies": {
